@@ -1,0 +1,4 @@
+src/Python/config.py
+src/Python/database_manager.py
+src/Databases/*
+__pycache__
