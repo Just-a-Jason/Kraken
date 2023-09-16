@@ -1,5 +1,5 @@
+from discord import Interaction, Embed, Game
 from discord.ext.commands import Bot
-from discord import Interaction, Embed
 from config import PREFIX, TOKEN
 from discord import Intents
 from os import system
@@ -20,6 +20,7 @@ KRAKEN_INSTANCE: Bot = Bot(command_prefix=PREFIX, intents=Intents.all())
 async def on_ready():
     print('KRAKEN IS READY!')
     await KRAKEN_INSTANCE.tree.sync()
+    await KRAKEN_INSTANCE.change_presence(activity=Game('/help'))
 
 
 @KRAKEN_INSTANCE.tree.command(name='fish', description='Use it to catch fish! 🦑')
