@@ -6,6 +6,6 @@
 
 > What I have to do?
 
-[X] Recreate fishing game by using opp.
+- [X] Recreate fishing game by using opp.
 
-[] Make the bot faster
+- [ ] Make the bot faster
