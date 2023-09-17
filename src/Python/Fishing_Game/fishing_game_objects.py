@@ -3,11 +3,11 @@ from enum import Enum
 
 class Fish:
     def __init__(self, name: str, icon: str, value: float, rarity: float, bait: dict = None):
-        self.name = name
-        self.icon = icon
-        self.value = value
-        self.rarity = rarity
-        self.bait = bait
+        self.name: str = name
+        self.icon: str = icon
+        self.value: float = value
+        self.rarity: float = rarity
+        self.bait: dict = bait
 
     def __str__(self) -> str:
         return f'(ShopItem)({hex(id(self))}) name: {self.name}, icon: {self.icon}  value: {self.value}, rarity: {self.rarity}, bait: {self.bait}'
@@ -23,13 +23,13 @@ class ItemType(Enum):
 
 class ShopItem:
     def __init__(self, name: str, icon: str, type: ItemType, cost: float, special: str = None, description: str = None, power: int = None):
-        self.name = name
-        self.icon = icon
-        self.type = type,
-        self.cost = cost
-        self.power = power
-        self.special = special
-        self.description = description
+        self.name: str = name
+        self.icon: str = icon
+        self.type: ItemType = type,
+        self.cost: float = cost
+        self.power: int = power
+        self.special: str = special
+        self.description: str = description
 
     def __str__(self) -> str:
         return f'(ShopItem)({hex(id(self))}) name: {self.name}, icon: {self.icon}  type: {self.type}, cost: {self.cost}, special: {self.special}, description: {self.description}'

@@ -4,8 +4,8 @@ from config import PREFIX, TOKEN
 from discord import Intents
 from os import system
 
-from Fishing_Game.fishing_game import FishingGame
 from database_manager import DataBaseManager
+from Fishing_Game.fishing_game import FishingGame
 from Fishing_Game.fishing_game_objects import Fish
 
 system('cls')
