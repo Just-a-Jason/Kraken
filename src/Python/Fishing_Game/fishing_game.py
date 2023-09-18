@@ -1,5 +1,4 @@
-from Fishing_Game.fishing_game_objects import Fish, ShopItem
-from database_manager import DataBaseManager
+from Fishing_Game.fishing_game_objects import Fish, ShopItem, FishList
 from utils import KeyHelper
 from typing import List
 from json import loads
@@ -8,6 +7,8 @@ from json import loads
 class FishingGame():
     shopData: dict[int, ShopItem] = None
     fishData: dict[int, Fish] = None
+
+    from database_manager import DataBaseManager
 
     def __init__(self, dataBaseManager: DataBaseManager):
         self.manager = dataBaseManager
@@ -52,8 +53,31 @@ class FishingGame():
 
                     FishingGame.fishData[id] = fish
 
-    def Fish(self) -> Fish:
-        from random import choice
-        # self.manager.AddItemToInventory(478514930958598174, 0, 5)
-        self.manager.GetItem(owner_id=478514930958598174, itemID=0)
-        return choice(FishingGame.fishData)
+    def GetAllFishWithBait(self, bait: str = 'none') -> FishList:
+
+        fishFound: List[Fish] = [
+            fish for fish in FishingGame.fishData.values()
+            if (fish.bait and bait in fish.bait) or fish.bait == None]
+
+        maxChance: int = 0
+
+        for fish in fishFound:
+            maxChance += fish.rarity
+
+        return FishList(maxChance=maxChance, fishList=fishFound)
+
+    def Fish(self, bait='none') -> Fish:
+        fishes: FishList = self.GetAllFishWithBait(bait=bait)
+        from random import randrange
+
+        chance: int = randrange(0, fishes.maxChance)
+        caught: Fish
+
+        for fish in fishes.fishList:
+            if chance <= fish.rarity:
+                caught = fish
+                break
+            else:
+                chance -= fish.rarity
+
+        return caught

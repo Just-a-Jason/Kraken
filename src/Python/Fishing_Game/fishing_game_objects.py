@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import List
 
 
 class Fish:
@@ -10,7 +11,7 @@ class Fish:
         self.bait: dict = bait
 
     def __str__(self) -> str:
-        return f'(ShopItem)({hex(id(self))}) name: {self.name}, icon: {self.icon}  value: {self.value}, rarity: {self.rarity}, bait: {self.bait}'
+        return f'(Fish)({hex(id(self))}) name: {self.name}, icon: {self.icon}  value: {self.value}, rarity: {self.rarity}, bait: {self.bait}'
 
     def TryCatch(self):
         pass
@@ -33,3 +34,9 @@ class ShopItem:
 
     def __str__(self) -> str:
         return f'(ShopItem)({hex(id(self))}) name: {self.name}, icon: {self.icon}  type: {self.type}, cost: {self.cost}, special: {self.special}, description: {self.description}'
+
+
+class FishList:
+    def __init__(self, maxChance: int, fishList: List[Fish]):
+        self.maxChance: int = maxChance
+        self.fishList: List[Fish] = fishList

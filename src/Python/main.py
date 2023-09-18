@@ -26,8 +26,11 @@ async def on_ready():
 @KRAKEN_INSTANCE.tree.command(name='fish', description='Use it to catch fish! 🦑')
 async def fish(i: Interaction):
     fish: Fish = fishingGame.Fish()
-    e: Embed = Embed(title='You caught')
-    e.add_field(name='Fish', value=f'{fish.name} {fish.icon}')
+    from discord import Colour
+
+    e: Embed = Embed(
+        title=f'You caught... {fish.name.upper()}! {fish.icon}', colour=Colour.dark_magenta())
+
     await i.response.send_message(embed=e)
 
 KRAKEN_INSTANCE.run(token=TOKEN)
